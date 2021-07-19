@@ -1,0 +1,93 @@
+<template>
+    <div class="container">
+				<h1>
+						<center class="header">Sudko</center>
+						<center class="sub-header">Hints - {totalHints}</center>
+				</h1>
+				<table class="table1">
+            <template for:each={gameBlockToShow} for:item="block">
+								<tr key={block}>
+								<template for:each={block} for:item="block1">
+										<td data-target-id={block1.cordinate} onclick={handleBlock} 
+												class={block1.class} key={block1} style="height:20px;width:20px;">
+														<p data-target-id={block1.cordinate} class="symbol slds-text-align_center">{block1.label}</p>
+										</td>
+								</template>
+								</tr>
+            </template>
+				</table>
+				<br>
+				<center>
+						<lightning-button 
+									variant="brand"
+									label="Hint"
+									onclick={addHints}
+									class="slds-m-left_x-small"
+									disabled={isHintsNotAvailable}>
+						</lightning-button>
+				</center>
+				<br>
+				<center>
+						<lightning-button 
+									variant="brand"
+									label="Reset"
+									onclick={resetGame}
+									class="slds-m-left_x-small"
+									disabled={isHintsNotAvailable}>
+						</lightning-button>
+				</center>
+				<br>
+				<table class="table2">
+						<tr>
+								<td data-target-id="1" onclick={handleNumber}>
+										<p data-target-id="1" class="symbol slds-text-align_center">1</p>
+								</td>
+								<td data-target-id="2" onclick={handleNumber}>
+										<p data-target-id="2" class="symbol slds-text-align_center">2</p>
+								</td>
+								<td data-target-id="3" onclick={handleNumber}>
+										<p data-target-id="3" class="symbol slds-text-align_center">3</p>
+								</td>
+								<td data-target-id="4" onclick={handleNumber}>
+										<p data-target-id=4 class="symbol slds-text-align_center">4</p>
+								</td>
+								<td data-target-id="5" onclick={handleNumber}>
+										<p data-target-id="5" class="symbol slds-text-align_center">5</p>
+								</td>
+								<td data-target-id="6" onclick={handleNumber}>
+										<p data-target-id="6" class="symbol slds-text-align_center">6</p>
+								</td>
+								<td data-target-id="7" onclick={handleNumber}>
+										<p data-target-id="7" class="symbol slds-text-align_center">7</p>
+								</td>
+								<td data-target-id="8" onclick={handleNumber}>
+										<p data-target-id="8" class="symbol slds-text-align_center">8</p>
+								</td>
+								<td data-target-id="9" onclick={handleNumber}>
+										<p data-target-id="9" class="symbol slds-text-align_center">9</p>
+								</td>
+								<td data-target-id="0" onclick={handleNumber}>
+										<p data-target-id="0" class="symbol slds-text-align_center">0</p>
+								</td>
+						</tr>
+				</table>
+				<br>
+				<center class="sub-header">press 0 to erase the cell</center>
+				<div class="overlayToStop" if:true={isGameCompleted}>
+            <div class="overlay-content">
+                <div class="custom-loading-text-1">
+                    <p style="font-size: xx-large;">Congratulation you won the game!</p>
+                </div>
+								<br>
+								<center>
+										<lightning-button 
+													variant="brand"
+													label="Play again"
+													onclick={playAgain}
+													class="slds-m-left_x-small">
+										</lightning-button>
+								</center>
+            </div>
+        </div>
+			</div>
+</template>
